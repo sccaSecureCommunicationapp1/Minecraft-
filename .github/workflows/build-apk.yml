@@ -25,14 +25,20 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Build Cordova APK
+    - name: Build APK via Capacitor
       run: |
-        npm install -g cordova
-        cordova platform add android
-        cordova build android --debug
+        mkdir www
+        cp index.html www/
+        npm init -y
+        npm install @capacitor/core @capacitor/cli @capacitor/android
+        npx cap init "Coin Master" "com.coinmaster.app" --web-dir www
+        npx cap add android
+        cd android
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: Coin-Master-APK
-        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+        path: android/app/build/outputs/apk/debug/app-debug.apk
