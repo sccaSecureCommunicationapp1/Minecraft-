@@ -1,0 +1,7 @@
+<?xml me version='1.0' encoding='utf-8'?>
+<widget id="com.coinmaster.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>Coin Master</name>
+    <description>Minecraft Coin Master App</description>
+    <author email="dev@example.com">Developer</author>
+    <content src="index.html" />
+</widget>
