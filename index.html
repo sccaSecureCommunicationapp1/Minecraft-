@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Coin Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; font-family: 'Press Start 2P', cursive; user-select: none; }
+        body { background: #1a0f0d linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)) url('https://raw.githubusercontent.com/InventorGamer/Minecraft-Assets/main/nether_bg.png') center/cover; color: #fff; margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .header-title { background: #2b7828; border: 4px solid #1f501d; box-shadow: inset -4px -4px #153814, inset 4px 4px #47ba43; padding: 12px 20px; text-align: center; font-size: 15px; text-shadow: 2px 2px #000; margin-bottom: 15px; width: 100%; max-width: 900px; }
+        .main-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; width: 100%; max-width: 900px; }
+        .box { background: #3c3c3c; border: 4px solid #1e1e1e; box-shadow: inset -4px -4px #282828, inset 4px 4px #5a5a5a; padding: 12px; }
+        .box-title { font-size: 11px; text-shadow: 1px 1px #000; margin-bottom: 12px; text-align: center; border-bottom: 2px solid #282828; padding-bottom: 6px; }
+        .task-item { background: #282828; border: 2px solid #141414; padding: 8px; margin-bottom: 8px; font-size: 9px; line-height: 1.4; }
+        .btn { background: #5b8731; border: 3px solid #1e1e1e; box-shadow: inset -3px -3px #324d1a, inset 3px 3px #81c244; color: #fff; padding: 10px; font-size: 9px; cursor: pointer; width: 100%; margin-top: 6px; text-shadow: 1px 1px #000; }
+        .btn-blue { background: #2b61a3; box-shadow: inset -3px -3px #183861, inset 3px 3px #488ce0; }
+        .btn-orange { background: #d46f1d; box-shadow: inset -3px -3px #80400d, inset 3px 3px #f79843; }
+        .item-row { display: flex; align-items: center; justify-content: space-between; background: #282828; border: 2px solid #141414; padding: 8px; margin-bottom: 8px; font-size: 9px; }
+        .balance-card { background: #282828; border: 2px solid #141414; padding: 10px; text-align: center; font-size: 10px; color: #55ff55; margin-bottom: 10px; }
+        .card-details { display: none; background: #111; border: 2px dashed #55ff55; padding: 10px; margin-top: 10px; font-size: 8px; color: #55ff55; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">MINECRAFT COIN MASTER</div>
+
+    <div class="main-container">
+        <div class="box">
+            <div class="box-title">MINECRAFT TASKS & ADS</div>
+            <div class="task-item">1. Play Minecraft Ads<br><span style="color:#ffaa00;">Reward: 25 Minecoins ($1.25)</span></div>
+            <div class="task-item">2. Test Mods & Review<br><span style="color:#ffaa00;">Reward: 50 Minecoins ($2.50)</span></div>
+            <button class="btn" onclick="playMinecraftAd()">WATCH MINECRAFT AD</button>
+            <button class="btn btn-blue" onclick="reviewMinecraftMod()">TEST & REVIEW MOD</button>
+        </div>
+
+        <div class="box">
+            <div class="box-title">INVENTORY BALANCE</div>
+            <div class="item-row"><div>Gold Coins</div><span id="gold-count">10</span></div>
+            <div class="item-row"><div>Diamonds</div><span id="diamond-count">5</span></div>
+            <div class="item-row"><div>Golden Apples</div><span id="apple-count">2</span></div>
+        </div>
+
+        <div class="box">
+            <div class="box-title">YOUR WALLET</div>
+            <div class="balance-card"><span id="coin-balance">500</span> Minecoins = $<span id="usd-balance">25.00</span></div>
+            <button class="btn btn-orange" onclick="redeemGlobalVisa()">REDEEM $25 GLOBAL VISA CARD</button>
+            <div id="visa-card-box" class="card-details">
+                ✔ <strong>GLOBAL VISA VIRTUAL CARD GENERATED</strong><br><br>
+                Card No: 4000 8920 1143 7890<br>EXP: 12/28 | CVV: 492<br>Status: ACTIVE (Google Play Compatible)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let coins = parseInt(localStorage.getItem('user_coins')) || 500;
+        let usdRate = 0.05;
+
+        function updateBalance() {
+            localStorage.setItem('user_coins', coins);
+            document.getElementById('coin-balance').innerText = coins;
+            document.getElementById('usd-balance').innerText = (coins * usdRate).toFixed(2);
+        }
+
+        function playMinecraftAd() {
+            alert("Loading Minecraft Playable Ad...");
+            setTimeout(function() {
+                coins += 25;
+                alert("Ad Completed! +25 Minecoins ($1.25) added.");
+                updateBalance();
+            }, 1000);
+        }
+
+        function reviewMinecraftMod() {
+            let reviewText = prompt("Enter your review for the Minecraft Mod:");
+            if(reviewText && reviewText.length > 3) {
+                coins += 50;
+                alert("Review Submitted! +50 Minecoins ($2.50) added.");
+                updateBalance();
+            }
+        }
+
+        function redeemGlobalVisa() {
+            if((coins * usdRate) >= 25.00) {
+                document.getElementById('visa-card-box').style.display = 'block';
+                alert("SUCCESS! $25 Global Visa Card generated for Google Play Store.");
+            } else {
+                alert("Minimum withdrawal is $25.00 USD.");
+            }
+        }
+
+        updateBalance();
+    </script>
+</body>
+</html>
