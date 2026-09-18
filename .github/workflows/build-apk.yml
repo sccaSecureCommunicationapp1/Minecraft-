@@ -20,23 +20,13 @@ jobs:
         distribution: 'zulu'
         java-version: '17'
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Build Cordova APK
+      uses: ionic-team/cordova-build-action@v1
       with:
-        node-version: '20'
-
-    - name: Auto-Generate Android Project & Build
-      run: |
-        npm install -g cordova
-        cordova create myApp com.coinmaster.app "Coin Master"
-        cd myApp
-        rm -rf www/*
-        cp ../index.html www/
-        cordova platform add android@12.0.0
-        cordova build android --release
+        platform: android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: Coin-Master-APK
-        path: myApp/platforms/android/app/build/outputs/apk/release/
+        path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
