@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Virtual Player & Builder Assistant",
+    "description": "Custom companion bot and local world builder for Minecraft Bedrock",
+    "uuid": "رینڈم_یو_یو_آئی_یہاں_آئے گا",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 16, 0]
+  },
+  "modules": [
+    {
+      "description": "Behavior logic for virtual player assistant",
+      "type": "data",
+      "uuid": "دوسرا_رینڈم_یو_یو_آئی",
+      "version": [1, 0, 0]
+    }
+  ]
+}
