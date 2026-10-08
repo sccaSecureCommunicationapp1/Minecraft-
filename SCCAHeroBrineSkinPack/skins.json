@@ -1,0 +1,13 @@
+{
+  "geometry": "geometry.humanoid.custom",
+  "skins": [
+    {
+      "localization_name": "skin.herobrine",
+      "geometry": "skin.humanoid.steve",
+      "texture": "steve_herobrine.png",
+      "skin_resource_patch": "{\"geometry\": {\"default\": \"geometry.humanoid.steve\"}}"
+    }
+  ],
+  "serialize_name": "herobrine_skin",
+  "localization_name": "skin.herobrine"
+}
